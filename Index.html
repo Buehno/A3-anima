@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Dispositivos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #imagePreview {
+            margin-top: 10px;
+            max-width: 100%;
+            max-height: 200px;
+            display: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f9e7;
+            border: 1px solid #c1eac1;
+            border-radius: 5px;
+        }
+
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        /* Menu de navegação */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Estilo para ocultar outras partes na impressão */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #result, #result * {
+                visibility: visible;
+            }
+
+            #result {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .photo {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Avaliação de Dispositivos</h1>
+        <p>Informe os dados e receba uma avaliação detalhada.</p>
+    </header>
+
+    <!-- Menu de Navegação -->
+    <nav>
+        <a href="Index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </nav>
+
+    <div class="container">
+        <form id="evaluationForm">
+            <div class="form-group" id="deviceField">
+                <label for="device">Selecione o dispositivo:</label>
+                <select id="device" required>
+                    <option value="">Selecione</option>
+                    <option value="iphone14pro">iPhone 14 Pro Max - R$ 9.000</option>
+                    <option value="galaxyzfold4">Samsung Galaxy Z Fold 4 - R$ 12.000</option>
+                    <option value="pixel7pro">Google Pixel 7 Pro - R$ 6.500</option>
+                    <option value="xiaomi13ultra">Xiaomi 13 Ultra - R$ 8.000</option>
+                    <option value="oneplus11">OnePlus 11 - R$ 5.500</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="screenField">
+                <label for="screen">Condição da Tela:</label>
+                <select id="screen" required>
+                    <option value="0">Sem riscos</option>
+                    <option value="-150">Riscos leves (-R$150)</option>
+                    <option value="-300">Riscos profundos (-R$300)</option>
+                    <option value="-500">Trincada (-R$500)</option>
+                    <option value="-1000">Quebrada (-R$1000)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="batteryField">
+                <label for="battery">Condição da Bateria:</label>
+                <select id="battery" required>
+                    <option value="0">Saúde acima de 90%</option>
+                    <option value="-200">Saúde entre 70%-90% (-R$200)</option>
+                    <option value="-400">Saúde entre 50%-70% (-R$400)</option>
+                    <option value="-700">Saúde abaixo de 50% (-R$700)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="bodyField">
+                <label for="body">Condição da Carcaça:</label>
+                <select id="body" required>
+                    <option value="0">Nova</option>
+                    <option value="-100">Arranhões leves (-R$100)</option>
+                    <option value="-300">Arranhões profundos (-R$300)</option>
+                    <option value="-500">Amassada (-R$500)</option>
+                    <option value="-800">Quebrada (-R$800)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="cameraField">
+                <label for="camera">Condição da Câmera:</label>
+                <select id="camera" required>
+                    <option value="0">Funcional</option>
+                    <option value="-200">Lente com riscos (-R$200)</option>
+                    <option value="-400">Lente trincada (-R$400)</option>
+                    <option value="-800">Não funcional (-R$800)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="softwareField">
+                <label for="software">Condição do Software:</label>
+                <select id="software" required>
+                    <option value="0">Sistema operacional atualizado</option>
+                    <option value="-150">Atualização pendente (-R$150)</option>
+                    <option value="-300">Sistema operacional instável (-R$300)</option>
+                    <option value="-500">Não funcional (-R$500)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="accessoriesField">
+                <label for="accessories">Acessórios:</label>
+                <select id="accessories" required>
+                    <option value="0">Carregador e fones originais incluídos</option>
+                    <option value="-100">Carregador faltando (-R$100)</option>
+                    <option value="-200">Fones faltando (-R$200)</option>
+                    <option value="-300">Sem acessórios (-R$300)</option>
+                </select>
+            </div>
+
+            <button type="submit" id="submitBtn" disabled>Calcular Avaliação</button>
+        </form>
+
+        <div class="result" id="result" style="display: none;">
+            <h3>Resultado da Avaliação</h3>
+            <p id="resultText"></p>
+            <p>Valor do Serviço: R$ 70,00</p>
+            <p id="resalePriceText"></p>
+            <button onclick="window.print()">Imprimir Relatório</button>
+        </div>
+
+        <!-- Botão para Fechar Compra -->
+        <button id="closePurchaseBtn" onclick="closePurchase()" style="background-color: #2196F3; margin-top: 20px;">Fechar Compra</button>
+    </div>
+
+    <script>
+        const deviceValue = {
+            iphone14pro: 9000,
+            galaxyzfold4: 12000,
+            pixel7pro: 6500,
+            xiaomi13ultra: 8000,
+            oneplus11: 5500
+        };
+
+        const evaluationForm = document.getElementById('evaluationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const resultContainer = document.getElementById('result');
+        const resultText = document.getElementById('resultText');
+        const resalePriceText = document.getElementById('resalePriceText');
+        const closePurchaseBtn = document.getElementById('closePurchaseBtn');
+
+        evaluationForm.addEventListener('change', function() {
+            const device = document.getElementById('device').value;
+            const screen = document.getElementById('screen').value;
+            const battery = document.getElementById('battery').value;
+            const body = document.getElementById('body').value;
+            const camera = document.getElementById('camera').value;
+            const software = document.getElementById('software').value;
+            const accessories = document.getElementById('accessories').value;
+
+            if (device && screen && battery && body && camera && software && accessories) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        });
+
+        evaluationForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const device = document.getElementById('device').value;
+    const screen = parseInt(document.getElementById('screen').value);
+    const battery = parseInt(document.getElementById('battery').value);
+    const body = parseInt(document.getElementById('body').value);
+    const camera = parseInt(document.getElementById('camera').value);
+    const software = parseInt(document.getElementById('software').value);
+    const accessories = parseInt(document.getElementById('accessories').value);
+
+    // Calculando o total
+    const totalPrice = deviceValue[device] + screen + battery + body + camera + software + accessories;
+
+    // Gerar os valores individuais para exibição
+    const devicePrice = deviceValue[device];
+    const screenPrice = screen;
+    const batteryPrice = battery;
+    const bodyPrice = body;
+    const cameraPrice = camera;
+    const softwarePrice = software;
+    const accessoriesPrice = accessories;
+
+    // Exibir o resultado
+    resultText.innerHTML = `
+        O preço de revenda estimado do dispositivo é R$ ${totalPrice.toFixed(2)}<br>
+        <strong>Detalhes:</strong><br>
+        Valor do dispositivo: R$ ${devicePrice}<br>
+        Condição da Tela: R$ ${screenPrice}<br>
+        Condição da Bateria: R$ ${batteryPrice}<br>
+        Condição da Carcaça: R$ ${bodyPrice}<br>
+        Condição da Câmera: R$ ${cameraPrice}<br>
+        Condição do Software: R$ ${softwarePrice}<br>
+        Acessórios: R$ ${accessoriesPrice}<br>
+    `;
+
+    resultContainer.style.display = 'block';
+});
+        function closePurchase() {
+    const device = document.getElementById('device').value;
+    const screen = parseInt(document.getElementById('screen').value);
+    const battery = parseInt(document.getElementById('battery').value);
+    const body = parseInt(document.getElementById('body').value);
+    const camera = parseInt(document.getElementById('camera').value);
+    const software = parseInt(document.getElementById('software').value);
+    const accessories = parseInt(document.getElementById('accessories').value);
+
+    const totalPrice = deviceValue[device] + screen + battery + body + camera + software + accessories;
+    const protocol = 'PROTOCOLO-' + Date.now(); // Gera um protocolo único baseado no timestamp
+
+    // Cria o objeto para salvar no localStorage
+    const produto = {
+        device,
+        totalPrice,
+        protocol
+    };
+
+    // Salva o produto no localStorage com o protocolo como chave
+    localStorage.setItem(protocol, JSON.stringify(produto));
+
+    // Exibe o alerta
+    alert('Produto adicionado com sucesso! Protocolo: ' + protocol);
+}
+
+
+   
+    </script>
+</body>
+</html>
