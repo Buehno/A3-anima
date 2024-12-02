@@ -203,6 +203,26 @@
                     <option value="0.2">Não funcional (20%)</option>
                 </select>
             </div>
+            <div class="form-group" id="usageField">
+                <label for="usage">Tempo de Uso (anos):</label>
+                <select id="usage" required>
+                    <option value="0">Novo</option>
+                    <option value="0.05">1 ano (5%)</option>
+                    <option value="0.1">2 anos (10%)</option>
+                    <option value="0.2">3 anos ou mais (20%)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="usageTime">Tempo de Uso:</label>
+                <select id="usageTime" required>
+                    <option value="0">Menos de 1 ano (0%)</option>
+                    <option value="0.1">1 ano (10%)</option>
+                    <option value="0.2">2 anos (20%)</option>
+                    <option value="0.3">3 anos (30%)</option>
+                    <option value="0.4">4 anos (40%)</option>
+                    <option value="0.5">5 anos ou mais (50%)</option>
+                </select>
+            </div>
 
             <div class="form-group" id="softwareField">
                 <label for="software">Condição do Software:</label>
@@ -231,7 +251,6 @@
         <ul id="discountDetails"></ul>
         <button onclick="window.print()">Imprimir Resultado</button>
     </div>
-
     <script>
       document.getElementById('evaluationForm').addEventListener('submit', function (e) {
         e.preventDefault();
@@ -243,7 +262,7 @@
         const body = parseFloat(document.getElementById('body').value);
         const camera = parseFloat(document.getElementById('camera').value);
         const software = parseFloat(document.getElementById('software').value);
-
+        const usageTime = parseFloat(document.getElementById('usageTime').value);
         // Definindo os preços dos dispositivos
         const devices = {
             'iphone14pro': 9000,
@@ -294,7 +313,6 @@
         document.getElementById('resultDevice').textContent = device;
         document.getElementById('finalValue').textContent = finalPrice.toFixed(2);
         document.getElementById('discountDetails').innerHTML = discountDetails.join('');
-
         document.getElementById('result').style.display = 'block';
 });
 
