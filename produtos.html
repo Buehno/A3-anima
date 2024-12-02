@@ -137,32 +137,30 @@
     </div>
 
     <script>
-        // Lê os dados do localStorage
-        const protocolo = localStorage.key(0); // Pega a primeira chave de protocolo armazenada
-        if (protocolo) {
-            const produto = JSON.parse(localStorage.getItem(protocolo));
-
-            // Exibe os dados do produto
-            document.getElementById('deviceName').textContent = `Nome do dispositivo: ${produto.device}`;
-            document.getElementById('productPrice').textContent = `Preço de Revenda (sem taxa): R$ ${produto.totalPrice.toFixed(2)}`;
-            document.getElementById('protocol').textContent = `Protocolo: ${produto.protocol}`;
-        } else {
-            alert('Nenhum produto encontrado no carrinho.');
-        }
-
-        // Função para excluir o produto
-        function deleteProduct() {
-            if (confirm("Tem certeza que deseja excluir este produto?")) {
-                localStorage.removeItem(protocolo);
-                alert('Produto excluído com sucesso.');
-                location.reload(); // Atualiza a página
+        window.onload = function() {
+            const newProduct = JSON.parse(localStorage.getItem('newProduct'));
+            
+            if (newProduct) {
+                const productContainer = document.getElementById('productList');
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
+                productElement.innerHTML = `
+                    <p><strong>Produto:</strong> ${newProduct.name}</p>
+                    <p><strong>Preço Final:</strong> R$ ${newProduct.price}</p>
+                `;
+                productContainer.appendChild(productElement);
+                localStorage.removeItem('newProduct'); // Remove o produto após exibição
             }
-        }
-
-        // Função para mostrar mais detalhes do produto
-        function viewMoreDetails() {
-            alert('Mostrar mais detalhes (aqui você pode expandir para mais informações).');
-        }
+        };
     </script>
+    
+    <!-- Exemplo de lista de produtos -->
+    <div class="container">
+        <h2>Produtos Criados</h2>
+        <div id="productList">
+            <!-- Os produtos serão inseridos aqui -->
+        </div>
+    </div>
+    
 </body>
 </html>

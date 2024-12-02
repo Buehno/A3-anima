@@ -12,7 +12,7 @@
     </header>
 
     <div class="container">
-        <form>
+        <form id="loginForm">
             <div class="form-group">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" placeholder="Digite seu e-mail" required>
@@ -24,14 +24,36 @@
             </div>
 
             <button type="submit">Entrar</button>
-
         </form>
 
         <div class="link">
-            <a href="index.html">Voltar</a>
+            <a href="Index.html">Voltar</a>
         </div>
+
+        <p id="errorMessage" style="color: red; display: none;">E-mail ou senha incorretos.</p>
     </div>
 
-    <script src="./js/script.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Valores fixos para login
+            const validEmail = "admin@admin";
+            const validPassword = "admin";
+
+            // Captura os valores inseridos
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Verifica credenciais
+            if (email === validEmail && password === validPassword) {
+                // Redireciona ao Index.html
+                window.location.href = "Index.html";
+            } else {
+                // Exibe mensagem de erro
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>

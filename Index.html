@@ -131,7 +131,7 @@
         <a href="Index.html">Início</a>
         <a href="produtos.html">Produtos</a>
         <a href="sobre.html">Sobre</a>
-        <a href="#" onclick="logout()">Logout</a>
+        <a href="login.html" onclick="logout()">Logout</a>
     </nav>
 
     <div class="container">
@@ -223,52 +223,81 @@
             <button onclick="window.print()">Imprimir Resultado</button>
         </div>
     </div>
+    <div id="result" class="result" style="display: none;">
+        <h2>Resultado</h2>
+        <p><strong>Dispositivo:</strong> <span id="resultDevice"></span></p>
+        <p><strong>Avaliação Final:</strong> R$ <span id="finalValue"></span></p>
+        <h3>Descontos Aplicados:</h3>
+        <ul id="discountDetails"></ul>
+        <button onclick="window.print()">Imprimir Resultado</button>
+    </div>
 
     <script>
-        document.getElementById('evaluationForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+      document.getElementById('evaluationForm').addEventListener('submit', function (e) {
+        e.preventDefault();
 
-            const device = document.getElementById('device').value;
-            const screen = parseFloat(document.getElementById('screen').value);
-            const battery = parseFloat(document.getElementById('battery').value);
-            const body = parseFloat(document.getElementById('body').value);
-            const camera = parseFloat(document.getElementById('camera').value);
-            const software = parseFloat(document.getElementById('software').value);
-            const accessories = parseFloat(document.getElementById('accessories').value);
+        // Selecionando os valores do formulário
+        const device = document.getElementById('device').value;
+        const screen = parseFloat(document.getElementById('screen').value);
+        const battery = parseFloat(document.getElementById('battery').value);
+        const body = parseFloat(document.getElementById('body').value);
+        const camera = parseFloat(document.getElementById('camera').value);
+        const software = parseFloat(document.getElementById('software').value);
 
-            const devices = {
-                'iphone14pro': 9000,
-                'galaxyzfold4': 12000,
-                'pixel7pro': 6500,
-                'xiaomi13ultra': 8000,
-                'oneplus11': 5500,
-                'iphone15promax': 13499,
-                'galaxyzfold5': 14999,
-                'pixel8pro': 7999,
-                'xiaomi13pro': 7999,
-                'oneplus11_5g': 6699,
-                'motorolaedge40': 4999,
-                'samsunggalaxys23ultra': 9999,
-                'oppofindx6pro': 11999,
-                'sonyexperiaz5': 4500,
-                'realmegt2pro': 3999,
-                'asusrogphone7': 5999,
-                'samsunggalaxynote20ultra': 8500,
-                'huaweiMate50Pro': 11999,
-                'lgv60thinq': 4500
-            };
+        // Definindo os preços dos dispositivos
+        const devices = {
+            'iphone14pro': 9000,
+            'galaxyzfold4': 12000,
+            'pixel7pro': 6500,
+            'xiaomi13ultra': 8000,
+            'oneplus11': 5500,
+            'iphone15promax': 13499,
+            'galaxyzfold5': 14999,
+            'pixel8pro': 7999,
+            'xiaomi13pro': 7999,
+            'oneplus11_5g': 6699,
+            'motorolaedge40': 4999,
+            'samsunggalaxys23ultra': 9999,
+            'oppofindx6pro': 11999,
+            'sonyexperiaz5': 4500,
+            'realmegt2pro': 3999,
+            'asusrogphone7': 5999,
+            'samsunggalaxynote20ultra': 8500,
+            'huaweiMate50Pro': 11999,
+            'lgv60thinq': 4500
+        };
 
-            const devicePrice = devices[device];
-            const discountPercentage = screen + battery + body + camera + software + accessories;
+        // Calculando o preço final
+        const devicePrice = devices[device];
+        const discountDetails = [];
+        let totalDiscount = 0;
 
-            const finalPrice = devicePrice - (devicePrice * discountPercentage);
-            const resultDevice = document.getElementById('resultDevice');
-            const finalValue = document.getElementById('finalValue');
-            resultDevice.textContent = device;
-            finalValue.textContent = finalPrice.toFixed(2);
+        // Descontos individuais
+        const discounts = {
+            'Tela': screen,
+            'Bateria': battery,
+            'Carcaça': body,
+            'Câmera': camera,
+            'Software': software
+        };
 
-            document.getElementById('result').style.display = 'block';
-        });
+        // Calcular descontos e criar lista de detalhes
+        for (const [key, value] of Object.entries(discounts)) {
+            const discountValue = devicePrice * value;
+            totalDiscount += discountValue;
+            discountDetails.push(`<li>${key}: R$ ${discountValue.toFixed(2)}</li>`);
+        }
+
+        const finalPrice = devicePrice - totalDiscount;
+
+        // Exibindo os resultados
+        document.getElementById('resultDevice').textContent = device;
+        document.getElementById('finalValue').textContent = finalPrice.toFixed(2);
+        document.getElementById('discountDetails').innerHTML = discountDetails.join('');
+
+        document.getElementById('result').style.display = 'block';
+});
+
     </script>
 </body>
 </html>
