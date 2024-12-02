@@ -145,6 +145,20 @@
                     <option value="pixel7pro">Google Pixel 7 Pro - R$ 6.500</option>
                     <option value="xiaomi13ultra">Xiaomi 13 Ultra - R$ 8.000</option>
                     <option value="oneplus11">OnePlus 11 - R$ 5.500</option>
+                    <option value="iphone15promax">iPhone 15 Pro Max - R$ 13.499</option>
+                    <option value="galaxyzfold5">Samsung Galaxy Z Fold 5 - R$ 14.999</option>
+                    <option value="pixel8pro">Google Pixel 8 Pro - R$ 7.999</option>
+                    <option value="xiaomi13pro">Xiaomi 13 Pro - R$ 7.999</option>
+                    <option value="oneplus11_5g">OnePlus 11 5G - R$ 6.699</option>
+                    <option value="motorolaedge40">Motorola Edge 40 - R$ 4.999</option>
+                    <option value="samsunggalaxys23ultra">Samsung Galaxy S23 Ultra - R$ 9.999</option>
+                    <option value="oppofindx6pro">Oppo Find X6 Pro - R$ 11.999</option>
+                    <option value="sonyexperiaz5">Sony Xperia Z5 - R$ 4.500</option>
+                    <option value="realmegt2pro">Realme GT2 Pro - R$ 3.999</option>
+                    <option value="asusrogphone7">Asus ROG Phone 7 - R$ 5.999</option>
+                    <option value="samsunggalaxynote20ultra">Samsung Galaxy Note 20 Ultra - R$ 8.500</option>
+                    <option value="huaweiMate50Pro">Huawei Mate 50 Pro - R$ 11.999</option>
+                    <option value="lgv60thinq">LG V60 ThinQ - R$ 4.500</option>
                 </select>
             </div>
 
@@ -152,10 +166,10 @@
                 <label for="screen">Condição da Tela:</label>
                 <select id="screen" required>
                     <option value="0">Sem riscos</option>
-                    <option value="-150">Riscos leves (-R$150)</option>
-                    <option value="-300">Riscos profundos (-R$300)</option>
-                    <option value="-500">Trincada (-R$500)</option>
-                    <option value="-1000">Quebrada (-R$1000)</option>
+                    <option value="0.05">Riscos leves (5%)</option>
+                    <option value="0.1">Riscos profundos (10%)</option>
+                    <option value="0.15">Trincada (15%)</option>
+                    <option value="0.2">Quebrada (20%)</option>
                 </select>
             </div>
 
@@ -163,9 +177,9 @@
                 <label for="battery">Condição da Bateria:</label>
                 <select id="battery" required>
                     <option value="0">Saúde acima de 90%</option>
-                    <option value="-200">Saúde entre 70%-90% (-R$200)</option>
-                    <option value="-400">Saúde entre 50%-70% (-R$400)</option>
-                    <option value="-700">Saúde abaixo de 50% (-R$700)</option>
+                    <option value="0.03">Saúde entre 70%-90% (3%)</option>
+                    <option value="0.06">Saúde entre 50%-70% (6%)</option>
+                    <option value="0.1">Saúde abaixo de 50% (10%)</option>
                 </select>
             </div>
 
@@ -173,10 +187,10 @@
                 <label for="body">Condição da Carcaça:</label>
                 <select id="body" required>
                     <option value="0">Nova</option>
-                    <option value="-100">Arranhões leves (-R$100)</option>
-                    <option value="-300">Arranhões profundos (-R$300)</option>
-                    <option value="-500">Amassada (-R$500)</option>
-                    <option value="-800">Quebrada (-R$800)</option>
+                    <option value="0.02">Arranhões leves (2%)</option>
+                    <option value="0.05">Arranhões profundos (5%)</option>
+                    <option value="0.1">Amassada (10%)</option>
+                    <option value="0.15">Quebrada (15%)</option>
                 </select>
             </div>
 
@@ -184,9 +198,9 @@
                 <label for="camera">Condição da Câmera:</label>
                 <select id="camera" required>
                     <option value="0">Funcional</option>
-                    <option value="-200">Lente com riscos (-R$200)</option>
-                    <option value="-400">Lente trincada (-R$400)</option>
-                    <option value="-800">Não funcional (-R$800)</option>
+                    <option value="0.05">Lente com riscos (5%)</option>
+                    <option value="0.1">Lente trincada (10%)</option>
+                    <option value="0.2">Não funcional (20%)</option>
                 </select>
             </div>
 
@@ -194,9 +208,9 @@
                 <label for="software">Condição do Software:</label>
                 <select id="software" required>
                     <option value="0">Sistema operacional atualizado</option>
-                    <option value="-150">Atualização pendente (-R$150)</option>
-                    <option value="-300">Sistema operacional instável (-R$300)</option>
-                    <option value="-500">Não funcional (-R$500)</option>
+                    <option value="0.02">Atualização pendente (2%)</option>
+                    <option value="0.05">Sistema operacional instável (5%)</option>
+                    <option value="0.1">Não funcional (10%)</option>
                 </select>
             </div>
 
@@ -204,148 +218,67 @@
                 <label for="accessories">Acessórios:</label>
                 <select id="accessories" required>
                     <option value="0">Carregador e fones originais incluídos</option>
-                    <option value="-100">Carregador faltando (-R$100)</option>
-                    <option value="-200">Fones faltando (-R$200)</option>
-                    <option value="-300">Sem acessórios (-R$300)</option>
+                    <option value="0.02">Carregador faltando (2%)</option>
+                    <option value="0.05">Carregador e fones faltando (5%)</option>
                 </select>
             </div>
 
-            <button type="submit" id="submitBtn" disabled>Calcular Avaliação</button>
+            <button type="submit">Calcular Avaliação</button>
         </form>
 
-        <div class="result" id="result" style="display: none;">
-            <h3>Resultado da Avaliação</h3>
-            <p id="resultText"></p>
-            <p>Valor do Serviço: R$ 70,00</p>
-            <p id="resalePriceText"></p>
-            <button onclick="window.print()">Imprimir Relatório</button>
+        <div id="result" class="result" style="display: none;">
+            <h2>Resultado</h2>
+            <p><strong>Dispositivo:</strong> <span id="resultDevice"></span></p>
+            <p><strong>Avaliação Final:</strong> R$ <span id="finalValue"></span></p>
+            <button onclick="window.print()">Imprimir Resultado</button>
         </div>
-
-        <!-- Botão para Fechar Compra -->
-        <button id="closePurchaseBtn" onclick="closePurchase()" style="background-color: #2196F3; margin-top: 20px;">Fechar Compra</button>
     </div>
 
     <script>
-        const deviceValue = {
-            iphone14pro: 9000,
-    galaxyzfold4: 12000,
-    pixel7pro: 6500,
-    xiaomi13ultra: 8000,
-    oneplus11: 5500,
-    iphone15promax: 13499,
-    galaxyzfold5: 14999,
-    pixel8pro: 7999,
-    xiaomi13pro: 7999,
-    oneplus11: 6699,
-    motorolaedge40: 4999,
-    samsunggalaxys23ultra: 9999,
-    oppofindx6pro: 11999,
-    sonyexperiaz5: 4500,
-    realmegt2pro: 3999,
-    asusrogphone7: 5999,
-    samsunggalaxynote20ultra: 8500,
-    huaweiMate50Pro: 11999,
-    lgv60thinq: 4500,
-    iphone15pro: 11999,
-    iphone14: 7499,
-    iphone13pro: 8499,
-    iphone13: 6499,
-    iphone12pro: 7999,
-    iphone12: 5999,
-    iphone11pro: 6799,
-    iphone11: 4999,
-    iphonese2022: 3699
-        };
+        document.getElementById('evaluationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        const evaluationForm = document.getElementById('evaluationForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const resultContainer = document.getElementById('result');
-        const resultText = document.getElementById('resultText');
-        const resalePriceText = document.getElementById('resalePriceText');
-        const closePurchaseBtn = document.getElementById('closePurchaseBtn');
-
-        evaluationForm.addEventListener('change', function() {
             const device = document.getElementById('device').value;
-            const screen = document.getElementById('screen').value;
-            const battery = document.getElementById('battery').value;
-            const body = document.getElementById('body').value;
-            const camera = document.getElementById('camera').value;
-            const software = document.getElementById('software').value;
-            const accessories = document.getElementById('accessories').value;
+            const screen = parseFloat(document.getElementById('screen').value);
+            const battery = parseFloat(document.getElementById('battery').value);
+            const body = parseFloat(document.getElementById('body').value);
+            const camera = parseFloat(document.getElementById('camera').value);
+            const software = parseFloat(document.getElementById('software').value);
+            const accessories = parseFloat(document.getElementById('accessories').value);
 
-            if (device && screen && battery && body && camera && software && accessories) {
-                submitBtn.disabled = false;
-            } else {
-                submitBtn.disabled = true;
-            }
+            const devices = {
+                'iphone14pro': 9000,
+                'galaxyzfold4': 12000,
+                'pixel7pro': 6500,
+                'xiaomi13ultra': 8000,
+                'oneplus11': 5500,
+                'iphone15promax': 13499,
+                'galaxyzfold5': 14999,
+                'pixel8pro': 7999,
+                'xiaomi13pro': 7999,
+                'oneplus11_5g': 6699,
+                'motorolaedge40': 4999,
+                'samsunggalaxys23ultra': 9999,
+                'oppofindx6pro': 11999,
+                'sonyexperiaz5': 4500,
+                'realmegt2pro': 3999,
+                'asusrogphone7': 5999,
+                'samsunggalaxynote20ultra': 8500,
+                'huaweiMate50Pro': 11999,
+                'lgv60thinq': 4500
+            };
+
+            const devicePrice = devices[device];
+            const discountPercentage = screen + battery + body + camera + software + accessories;
+
+            const finalPrice = devicePrice - (devicePrice * discountPercentage);
+            const resultDevice = document.getElementById('resultDevice');
+            const finalValue = document.getElementById('finalValue');
+            resultDevice.textContent = device;
+            finalValue.textContent = finalPrice.toFixed(2);
+
+            document.getElementById('result').style.display = 'block';
         });
-
-        evaluationForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const device = document.getElementById('device').value;
-    const screen = parseInt(document.getElementById('screen').value);
-    const battery = parseInt(document.getElementById('battery').value);
-    const body = parseInt(document.getElementById('body').value);
-    const camera = parseInt(document.getElementById('camera').value);
-    const software = parseInt(document.getElementById('software').value);
-    const accessories = parseInt(document.getElementById('accessories').value);
-
-    // Calculando o total
-    const totalPrice = deviceValue[device] + screen + battery + body + camera + software + accessories;
-
-    // Gerar os valores individuais para exibição
-    const devicePrice = deviceValue[device];
-    const screenPrice = screen;
-    const batteryPrice = battery;
-    const bodyPrice = body;
-    const cameraPrice = camera;
-    const softwarePrice = software;
-    const accessoriesPrice = accessories;
-
-    // Exibir o resultado
-    resultText.innerHTML = `
-        O preço de revenda estimado do dispositivo é R$ ${totalPrice.toFixed(2)}<br>
-        <strong>Detalhes:</strong><br>
-        Valor do dispositivo: R$ ${devicePrice}<br>
-        Condição da Tela: R$ ${screenPrice}<br>
-        Condição da Bateria: R$ ${batteryPrice}<br>
-        Condição da Carcaça: R$ ${bodyPrice}<br>
-        Condição da Câmera: R$ ${cameraPrice}<br>
-        Condição do Software: R$ ${softwarePrice}<br>
-        Acessórios: R$ ${accessoriesPrice}<br>
-    `;
-
-    resultContainer.style.display = 'block';
-});
-        function closePurchase() {
-    const device = document.getElementById('device').value;
-    const screen = parseInt(document.getElementById('screen').value);
-    const battery = parseInt(document.getElementById('battery').value);
-    const body = parseInt(document.getElementById('body').value);
-    const camera = parseInt(document.getElementById('camera').value);
-    const software = parseInt(document.getElementById('software').value);
-    const accessories = parseInt(document.getElementById('accessories').value);
-
-    const totalPrice = deviceValue[device] + screen + battery + body + camera + software + accessories;
-    const protocol = 'PROTOCOLO-' + Date.now(); // Gera um protocolo único baseado no timestamp
-
-    // Cria o objeto para salvar no localStorage
-    const produto = {
-        device,
-        totalPrice,
-        protocol
-    };
-
-    // Salva o produto no localStorage com o protocolo como chave
-    localStorage.setItem(protocol, JSON.stringify(produto));
-
-    // Exibe o alerta
-    alert('Produto adicionado com sucesso! Protocolo: ' + protocol);
-}
-
-
-   
     </script>
 </body>
 </html>
