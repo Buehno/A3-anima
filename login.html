@@ -42,11 +42,14 @@
             const validPassword = "admin";
 
             // Captura os valores inseridos
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
 
             // Verifica credenciais
             if (email === validEmail && password === validPassword) {
+                // Salva estado de login no localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+
                 // Redireciona ao Index.html
                 window.location.href = "Index.html";
             } else {

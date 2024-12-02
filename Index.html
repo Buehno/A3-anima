@@ -315,6 +315,22 @@
         document.getElementById('discountDetails').innerHTML = discountDetails.join('');
         document.getElementById('result').style.display = 'block';
 });
+function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn || isLoggedIn !== 'true') {
+                // Redireciona para a página de login
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Função para logout
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+
+        // Executa a verificação de login ao carregar a página
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
 
     </script>
 </body>
